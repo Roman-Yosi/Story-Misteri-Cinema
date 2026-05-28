@@ -1,13 +1,128 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>PiCoRo - Video Sharing</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
-</html>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <title>Story Misteri Cinema</title>
+  <meta name="description" content="Story Misteri Cinema - cerita horor, misteri, dan cinematic storytelling">
+  <meta name="keywords" content="horor, misteri, cerita seram, cinematic, film pendek">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #000;
+      color: white;
+      text-align: center;
+    }
+
+    header {
+      padding: 50px 20px;
+      background: linear-gradient(45deg, #0a0a0a, #1a1a1a);
+      border-bottom: 2px solid #222;
+    }
+
+    h1 {
+      font-size: 36px;
+      margin-bottom: 10px;
+      letter-spacing: 2px;
+    }
+
+    p {
+      color: #ccc;
+    }
+
+    .btn {
+      display: inline-block;
+      margin: 10px;
+      padding: 12px 18px;
+      background: red;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      background: darkred;
+      transform: scale(1.05);
+    }
+
+    .section {
+      padding: 40px 20px;
+    }
+
+    .hero-image img {
+      width: 100%;
+      max-width: 900px;
+      border-radius: 15px;
+      box-shadow: 0 0 30px rgba(255,0,0,0.2);
+    }
+
+    iframe {
+      width: 90%;
+      max-width: 700px;
+      height: 350px;
+      border-radius: 12px;
+      border: none;
+      box-shadow: 0 0 20px rgba(0,0,0,0.6);
+    }
+
+    footer {
+      padding: 30px;
+      border-top: 1px solid #222;
+      color: #777;
+      font-size: 14px;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>STORY MISTERI CINEMA</h1>
+  <p>Cinematic Horror • Mystery Stories • Dark Atmosphere</p>
+
+  <a class="btn" href="https://youtube.com" target="_blank">YouTube Channel</a>
+  <a class="btn" href="https://github.com/Roman-Yosi/Story-Misteri-Cinema" target="_blank">GitHub Repo</a>
+</header>
+
+<div class="section hero-image">
+
+  <img src="https://github.com/Roman-Yosi/Poto-mister-cinema/blob/main/Cinemamisteri.png?raw=true"
+       alt="Story Misteri Cinema Poster">
+
+</div>
+
+<div class="section">
+  <h2>Latest Episode</h2>
+
+  <!-- GANTI VIDEO_ID DENGAN VIDEO YOUTUBE KAMU -->
+  <iframe src="https://www.youtube.com/embed/VIDEO_ID" allowfullscreen></iframe>
+
+  <p style="margin-top:10px; color:#aaa;">
+    Update episode terbaru akan muncul di sini
+  </p>
+</div>
+
+<div class="section">
+  <h2>About Project</h2>
+  <p style="max-width:700px; margin:auto;">
+    Story Misteri Cinema adalah project cerita misteri dan horor cinematic.
+    Dibuat untuk menghadirkan pengalaman storytelling seperti film pendek dengan suasana gelap, misterius, dan imersif.
+  </p>
+</div>
+
+<div class="section">
+  <h2>More Content</h2>
+  <p>Subscribe untuk update cerita terbaru dan episode selanjutnya.</p>
+  <a class="btn" href="https://youtube.com" target="_blank">Subscribe Now</a>
+</div>
+
+<footer>
+  © 2026 Story Misteri Cinema • All Rights Reserved
+</footer>
+
+</body>
+</html>
