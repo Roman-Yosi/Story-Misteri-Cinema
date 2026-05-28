@@ -19,18 +19,28 @@
 
     header {
       padding: 50px 20px;
-      background: linear-gradient(45deg, #0a0a0a, #1a1a1a);
+      background: radial-gradient(circle at top, #1a1a1a, #000);
       border-bottom: 2px solid #222;
     }
 
     h1 {
-      font-size: 36px;
-      margin-bottom: 10px;
-      letter-spacing: 2px;
+      font-size: 40px;
+      margin: 10px 0;
+      letter-spacing: 3px;
     }
 
     p {
-      color: #ccc;
+      color: #bbb;
+    }
+
+    .profile img {
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      border: 3px solid red;
+      object-fit: cover;
+      box-shadow: 0 0 25px rgba(255,0,0,0.5);
+      margin-top: 15px;
     }
 
     .btn {
@@ -53,27 +63,27 @@
       padding: 40px 20px;
     }
 
-    .hero-image img {
+    .poster img {
       width: 100%;
       max-width: 900px;
       border-radius: 15px;
-      box-shadow: 0 0 30px rgba(255,0,0,0.2);
+      box-shadow: 0 0 40px rgba(255,0,0,0.15);
     }
 
     iframe {
       width: 90%;
       max-width: 700px;
-      height: 350px;
+      height: 360px;
       border-radius: 12px;
       border: none;
-      box-shadow: 0 0 20px rgba(0,0,0,0.6);
+      box-shadow: 0 0 25px rgba(0,0,0,0.8);
     }
 
     footer {
       padding: 30px;
       border-top: 1px solid #222;
       color: #777;
-      font-size: 14px;
+      font-size: 13px;
     }
   </style>
 </head>
@@ -81,42 +91,51 @@
 <body>
 
 <header>
+
   <h1>STORY MISTERI CINEMA</h1>
-  <p>Cinematic Horror • Mystery Stories • Dark Atmosphere</p>
+  <p>Cinematic Horror • Mystery • Dark Storytelling</p>
+
+  <!-- FOTO PROFIL -->
+  <div class="profile">
+    <img src="https://github.com/Roman-Yosi/Poto-mister-cinema/blob/main/Cinemamisteri.png?raw=true"
+         alt="Profile Story Misteri Cinema">
+  </div>
 
   <a class="btn" href="https://youtube.com" target="_blank">YouTube Channel</a>
   <a class="btn" href="https://github.com/Roman-Yosi/Story-Misteri-Cinema" target="_blank">GitHub Repo</a>
+
 </header>
 
-<div class="section hero-image">
-
+<!-- POSTER CINEMATIC -->
+<div class="section poster">
   <img src="https://github.com/Roman-Yosi/Poto-mister-cinema/blob/main/Cinemamisteri.png?raw=true"
        alt="Story Misteri Cinema Poster">
-
 </div>
 
+<!-- VIDEO YOUTUBE -->
 <div class="section">
   <h2>Latest Episode</h2>
 
-  <!-- GANTI VIDEO_ID DENGAN VIDEO YOUTUBE KAMU -->
   <iframe src="https://www.youtube.com/embed/VIDEO_ID" allowfullscreen></iframe>
 
-  <p style="margin-top:10px; color:#aaa;">
-    Update episode terbaru akan muncul di sini
+  <p style="color:#888; margin-top:10px;">
+    Episode terbaru akan update di sini
   </p>
 </div>
 
+<!-- ABOUT -->
 <div class="section">
   <h2>About Project</h2>
   <p style="max-width:700px; margin:auto;">
-    Story Misteri Cinema adalah project cerita misteri dan horor cinematic.
-    Dibuat untuk menghadirkan pengalaman storytelling seperti film pendek dengan suasana gelap, misterius, dan imersif.
+    Story Misteri Cinema adalah channel cerita horor dan misteri cinematic.
+    Dibuat untuk memberikan pengalaman seperti film pendek dengan suasana gelap, misterius, dan imersif.
   </p>
 </div>
 
+<!-- CTA -->
 <div class="section">
-  <h2>More Content</h2>
-  <p>Subscribe untuk update cerita terbaru dan episode selanjutnya.</p>
+  <h2>Subscribe</h2>
+  <p>Jangan lewatkan episode terbaru setiap minggu</p>
   <a class="btn" href="https://youtube.com" target="_blank">Subscribe Now</a>
 </div>
 
