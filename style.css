@@ -1,0 +1,47 @@
+body {
+  margin: 0;
+  font-family: Arial;
+  background: black;
+  color: white;
+  text-align: center;
+}
+
+header {
+  padding: 40px;
+  background: #111;
+}
+
+h1 {
+  letter-spacing: 2px;
+}
+
+.btn {
+  display: inline-block;
+  margin: 5px;
+  padding: 10px 15px;
+  background: red;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+}
+
+.hero img {
+  width: 100%;
+  max-width: 900px;
+}
+
+.content {
+  padding: 30px;
+}
+
+iframe {
+  width: 90%;
+  max-width: 700px;
+  height: 360px;
+  border: none;
+}
+
+footer {
+  padding: 20px;
+  color: #777;
+}
