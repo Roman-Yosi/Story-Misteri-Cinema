@@ -4,279 +4,81 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Story Misteri Cinema - Horror Cinematic Indonesia</title>
+<title>Story Misteri Cinema - Horror Universe</title>
 
-<!-- 🔍 SEO -->
-<meta name="description" content="Story Misteri Cinema - film horor & cerita misteri cinematic Indonesia">
-<meta name="keywords" content="horor, misteri, film pendek, cerita seram, roman yosi, youtube horror, kuntilanak, pocong">
+<link rel="stylesheet" href="style.css">
 
-<!-- 📊 OPEN GRAPH (SEO SHARE) -->
-<meta property="og:title" content="Story Misteri Cinema">
-<meta property="og:description" content="Cinematic Horror & Mystery Stories Indonesia">
-<meta property="og:type" content="website">
+<!-- SEO -->
+<meta name="description" content="Story Misteri Cinema - film horor, cerita misteri, live YouTube, cinematic horror Indonesia">
+<meta name="keywords" content="horor, misteri, rumah angker, film pendek, roman yosi, kroman tv">
 
-<style>
-body{
-margin:0;
-font-family:Arial;
-background:black;
-color:white;
-}
+<!-- ADSENSE (PASTE SCRIPT ADSENSE DI SINI NANTI) -->
+<!-- contoh:
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+-->
 
-/* HEADER */
-header{
-padding:20px;
-text-align:center;
-border-bottom:1px solid #222;
-}
-
-h1{
-color:red;
-text-shadow:0 0 10px red;
-letter-spacing:2px;
-}
-
-/* NAV */
-nav{
-text-align:center;
-padding:10px;
-background:#111;
-}
-
-nav a{
-color:white;
-margin:10px;
-text-decoration:none;
-}
-
-nav a:hover{
-color:red;
-}
-
-/* HERO */
-.hero img{
-width:100%;
-max-width:900px;
-display:block;
-margin:auto;
-border-radius:10px;
-}
-
-/* VIDEO */
-.video{
-text-align:center;
-padding:20px;
-}
-
-iframe{
-width:90%;
-max-width:900px;
-height:450px;
-border:none;
-border-radius:10px;
-}
-
-/* GRID */
-.grid{
-display:grid;
-grid-template-columns:repeat(2,1fr);
-gap:10px;
-padding:20px;
-}
-
-.card{
-background:#111;
-padding:10px;
-border-radius:10px;
-cursor:pointer;
-transition:0.3s;
-}
-
-.card:hover{
-transform:scale(1.03);
-background:#1a1a1a;
-}
-
-.card img{
-width:100%;
-border-radius:8px;
-}
-
-/* SECTION */
-.section{
-padding:20px;
-max-width:900px;
-margin:auto;
-color:#ccc;
-}
-
-/* CONTACT */
-.contact a{
-display:block;
-color:#aaa;
-margin:5px 0;
-}
-
-/* ADS */
-.adsense-box,
-.adsterra-box{
-margin:20px;
-padding:25px;
-border:1px dashed #444;
-text-align:center;
-color:#888;
-background:#111;
-border-radius:10px;
-}
-
-/* CHANNEL */
-.channel{
-text-align:center;
-padding:25px;
-border-top:1px solid #222;
-}
-
-.channel a{
-display:inline-block;
-margin:10px;
-padding:10px 15px;
-background:red;
-color:white;
-text-decoration:none;
-border-radius:8px;
-}
-
-.channel a:hover{
-background:darkred;
-}
-
-/* FOOTER */
-footer{
-text-align:center;
-padding:20px;
-border-top:1px solid #222;
-color:#777;
-}
-</style>
 </head>
 
 <body>
 
 <header>
-<h1>STORY MISTERI CINEMA</h1>
-<p>Cinematic Horror Universe</p>
+  <img class="logo" src="https://raw.githubusercontent.com/Roman-Yosi/Poto-mister-cinema/main/Cinemamisteri.png">
+  <h1>STORY MISTERI CINEMA</h1>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="artikel.html">Artikel</a>
+    <a href="biography.html">Biography</a>
+    <a href="kamera.html">Kamera</a>
+    <a href="live.html">Live</a>
+    <a href="contact.html">Contact</a>
+  </nav>
 </header>
 
-<!-- NAV -->
-<nav>
-<a href="#home">Home</a>
-<a href="#episode">Episode</a>
-<a href="#about">About</a>
-<a href="#privacy">Privacy</a>
-<a href="#contact">Contact</a>
-</nav>
+<section class="hero">
+  <h2>🎬 Latest Horror Video</h2>
 
-<!-- HERO -->
-<div class="hero" id="home">
-<img src="https://github.com/Roman-Yosi/Poto-mister-cinema/blob/main/Cinemamisteri.png?raw=true">
-</div>
+  <iframe id="player" allowfullscreen></iframe>
+</section>
 
-<!-- VIDEO -->
-<div class="video">
-<h2>Latest Video</h2>
+<section class="section">
+  <h2>🔥 Episode Terbaru</h2>
 
-<iframe id="player"
-src="https://www.youtube.com/embed/lQvS3k7zb14?autoplay=1&mute=1"
-allowfullscreen></iframe>
+  <div class="grid">
 
-<h3 id="title">Hampir Saja Kami Tak Sadarkan Diri Di Rumah Angker Ini</h3>
-</div>
+    <div class="card" onclick="play('lQvS3k7zb14')">
+      <img src="https://img.youtube.com/vi/lQvS3k7zb14/hqdefault.jpg">
+      <p>Rumah Angker Banten</p>
+    </div>
 
-<!-- 🔥 ADSENSE SLOT -->
-<div class="adsense-box">
-📢 Google AdSense Slot (Paste Script di sini)
-</div>
+    <div class="card" onclick="play('tA9dH_QSEYk')">
+      <img src="https://img.youtube.com/vi/tA9dH_QSEYk/hqdefault.jpg">
+      <p>Keris Terbang</p>
+    </div>
 
-<!-- 🔥 ADSTERRA SLOT -->
-<div class="adsterra-box">
-📢 Adsterra Slot (Banner / Popunder Code Tempel di sini)
-</div>
+    <div class="card" onclick="play('6O9KycBCIF4')">
+      <img src="https://img.youtube.com/vi/6O9KycBCIF4/hqdefault.jpg">
+      <p>Rumah Viral Angker</p>
+    </div>
 
-<!-- EPISODE -->
-<div class="section" id="episode">
-<h2>Episode</h2>
+    <div class="card" onclick="play('wDyfxlQ8R-g')">
+      <img src="https://img.youtube.com/vi/wDyfxlQ8R-g/hqdefault.jpg">
+      <p>Kuntilanak Menangis</p>
+    </div>
 
-<div class="grid">
+  </div>
+</section>
 
-<div class="card" onclick="play('lQvS3k7zb14','Rumah Angker Banten')">
-<img src="https://img.youtube.com/vi/lQvS3k7zb14/hqdefault.jpg">
-<p>Episode 1</p>
-</div>
-
-<div class="card" onclick="play('tA9dH_QSEYk','Keris Terbang')">
-<img src="https://img.youtube.com/vi/tA9dH_QSEYk/hqdefault.jpg">
-<p>Episode 2</p>
-</div>
-
-<div class="card" onclick="play('6O9KycBCIF4','Rumah Viral')">
-<img src="https://img.youtube.com/vi/6O9KycBCIF4/hqdefault.jpg">
-<p>Episode 3</p>
-</div>
-
-<div class="card" onclick="play('wDyfxlQ8R-g','Kuntilanak Menangis')">
-<img src="https://img.youtube.com/vi/wDyfxlQ8R-g/hqdefault.jpg">
-<p>Episode 4</p>
-</div>
-
-</div>
-</div>
-
-<!-- ABOUT -->
-<div class="section" id="about">
-<h2>About</h2>
-<p>
-Story Misteri Cinema adalah channel & website cinematic horror Indonesia.
-</p>
-</div>
-
-<!-- PRIVACY -->
-<div class="section" id="privacy">
-<h2>Privacy Policy</h2>
-<p>
-Website ini menggunakan layanan YouTube embed dan tidak menyimpan data pengguna.
-</p>
-</div>
-
-<!-- CONTACT -->
-<div class="section contact" id="contact">
-<h2>Contact & Social Media</h2>
-
-<a href="https://www.tiktok.com/@romanyosi">TikTok Roman Yosi</a>
-<a href="https://www.tiktok.com/@kromantv">TikTok KromanTV</a>
-
-<a href="https://www.instagram.com/roman.yosi">Instagram Roman Yosi</a>
-<a href="https://www.instagram.com/kromantv1">Instagram KromanTV</a>
-</div>
-
-<!-- 📺 CHANNEL SECTION -->
-<div class="channel">
-<h2>Official YouTube Channel</h2>
-
-<a href="https://youtube.com/@romanyosi" target="_blank">@RomanYosi</a>
-<a href="https://youtube.com/@kromantv" target="_blank">@KromanTV</a>
+<!-- ADS SLOT -->
+<div class="ads">
+📢 AdSense / Adsterra Slot Ready
 </div>
 
 <footer>
 © 2026 Story Misteri Cinema
 </footer>
 
-<script>
-function play(id,title){
-document.getElementById("player").src =
-"https://www.youtube.com/embed/"+id+"?autoplay=1&mute=1";
-document.getElementById("title").innerText = title;
-}
-</script>
+<script src="script.js"></script>
 
 </body>
 </html>
