@@ -4,7 +4,16 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Story Misteri Cinema</title>
+<title>Story Misteri Cinema - Horror Cinematic Indonesia</title>
+
+<!-- 🔍 SEO -->
+<meta name="description" content="Story Misteri Cinema - film horor & cerita misteri cinematic Indonesia">
+<meta name="keywords" content="horor, misteri, film pendek, cerita seram, roman yosi, youtube horror, kuntilanak, pocong">
+
+<!-- 📊 OPEN GRAPH (SEO SHARE) -->
+<meta property="og:title" content="Story Misteri Cinema">
+<meta property="og:description" content="Cinematic Horror & Mystery Stories Indonesia">
+<meta property="og:type" content="website">
 
 <style>
 body{
@@ -108,6 +117,39 @@ color:#aaa;
 margin:5px 0;
 }
 
+/* ADS */
+.adsense-box,
+.adsterra-box{
+margin:20px;
+padding:25px;
+border:1px dashed #444;
+text-align:center;
+color:#888;
+background:#111;
+border-radius:10px;
+}
+
+/* CHANNEL */
+.channel{
+text-align:center;
+padding:25px;
+border-top:1px solid #222;
+}
+
+.channel a{
+display:inline-block;
+margin:10px;
+padding:10px 15px;
+background:red;
+color:white;
+text-decoration:none;
+border-radius:8px;
+}
+
+.channel a:hover{
+background:darkred;
+}
+
 /* FOOTER */
 footer{
 text-align:center;
@@ -134,7 +176,7 @@ color:#777;
 <a href="#contact">Contact</a>
 </nav>
 
-<!-- HERO IMAGE -->
+<!-- HERO -->
 <div class="hero" id="home">
 <img src="https://github.com/Roman-Yosi/Poto-mister-cinema/blob/main/Cinemamisteri.png?raw=true">
 </div>
@@ -150,6 +192,16 @@ allowfullscreen></iframe>
 <h3 id="title">Hampir Saja Kami Tak Sadarkan Diri Di Rumah Angker Ini</h3>
 </div>
 
+<!-- 🔥 ADSENSE SLOT -->
+<div class="adsense-box">
+📢 Google AdSense Slot (Paste Script di sini)
+</div>
+
+<!-- 🔥 ADSTERRA SLOT -->
+<div class="adsterra-box">
+📢 Adsterra Slot (Banner / Popunder Code Tempel di sini)
+</div>
+
 <!-- EPISODE -->
 <div class="section" id="episode">
 <h2>Episode</h2>
@@ -158,22 +210,22 @@ allowfullscreen></iframe>
 
 <div class="card" onclick="play('lQvS3k7zb14','Rumah Angker Banten')">
 <img src="https://img.youtube.com/vi/lQvS3k7zb14/hqdefault.jpg">
-<p>Episode 1 - Rumah Angker Banten</p>
+<p>Episode 1</p>
 </div>
 
-<div class="card" onclick="play('tA9dH_QSEYk','Keris Terbang Rumah Kosong')">
+<div class="card" onclick="play('tA9dH_QSEYk','Keris Terbang')">
 <img src="https://img.youtube.com/vi/tA9dH_QSEYk/hqdefault.jpg">
-<p>Episode 2 - Keris Terbang</p>
+<p>Episode 2</p>
 </div>
 
-<div class="card" onclick="play('6O9KycBCIF4','Rumah Viral Angker')">
+<div class="card" onclick="play('6O9KycBCIF4','Rumah Viral')">
 <img src="https://img.youtube.com/vi/6O9KycBCIF4/hqdefault.jpg">
-<p>Episode 3 - Rumah Viral Angker</p>
+<p>Episode 3</p>
 </div>
 
 <div class="card" onclick="play('wDyfxlQ8R-g','Kuntilanak Menangis')">
 <img src="https://img.youtube.com/vi/wDyfxlQ8R-g/hqdefault.jpg">
-<p>Episode 4 - Kuntilanak Menangis</p>
+<p>Episode 4</p>
 </div>
 
 </div>
@@ -183,7 +235,7 @@ allowfullscreen></iframe>
 <div class="section" id="about">
 <h2>About</h2>
 <p>
-Story Misteri Cinema adalah channel & website cinematic horror yang berisi kisah misteri, rumah angker, dan kejadian supranatural dari berbagai tempat di Indonesia.
+Story Misteri Cinema adalah channel & website cinematic horror Indonesia.
 </p>
 </div>
 
@@ -191,7 +243,7 @@ Story Misteri Cinema adalah channel & website cinematic horror yang berisi kisah
 <div class="section" id="privacy">
 <h2>Privacy Policy</h2>
 <p>
-Website ini menggunakan layanan pihak ketiga seperti YouTube untuk menampilkan video. Kami tidak menyimpan data pengguna.
+Website ini menggunakan layanan YouTube embed dan tidak menyimpan data pengguna.
 </p>
 </div>
 
@@ -206,6 +258,14 @@ Website ini menggunakan layanan pihak ketiga seperti YouTube untuk menampilkan v
 <a href="https://www.instagram.com/kromantv1">Instagram KromanTV</a>
 </div>
 
+<!-- 📺 CHANNEL SECTION -->
+<div class="channel">
+<h2>Official YouTube Channel</h2>
+
+<a href="https://youtube.com/@romanyosi" target="_blank">@RomanYosi</a>
+<a href="https://youtube.com/@kromantv" target="_blank">@KromanTV</a>
+</div>
+
 <footer>
 © 2026 Story Misteri Cinema
 </footer>
@@ -214,7 +274,6 @@ Website ini menggunakan layanan pihak ketiga seperti YouTube untuk menampilkan v
 function play(id,title){
 document.getElementById("player").src =
 "https://www.youtube.com/embed/"+id+"?autoplay=1&mute=1";
-
 document.getElementById("title").innerText = title;
 }
 </script>
