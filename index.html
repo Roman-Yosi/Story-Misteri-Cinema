@@ -45,10 +45,6 @@ h1 {
   text-shadow: 0 0 10px red;
 }
 
-p {
-  color: #aaa;
-}
-
 .btn {
   display: inline-block;
   margin: 6px;
@@ -57,12 +53,6 @@ p {
   color: white;
   text-decoration: none;
   border-radius: 8px;
-  transition: 0.3s;
-}
-
-.btn:hover {
-  background: darkred;
-  transform: scale(1.05);
 }
 
 /* HERO */
@@ -71,13 +61,12 @@ p {
   max-width: 900px;
   border-radius: 15px;
   box-shadow: 0 0 30px rgba(255,0,0,0.2);
-  margin-top: 20px;
 }
 
 /* VIDEO */
 .video {
-  padding: 30px;
   text-align: center;
+  padding: 20px;
 }
 
 iframe {
@@ -86,7 +75,19 @@ iframe {
   height: 420px;
   border-radius: 12px;
   border: none;
-  box-shadow: 0 0 30px rgba(0,0,0,0.8);
+}
+
+/* INFO BOX */
+.info {
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
+  text-align: left;
+  color: #ccc;
+}
+
+.info h2 {
+  color: red;
 }
 
 /* FOOTER */
@@ -101,48 +102,60 @@ footer {
 
 <body>
 
-<!-- 🌫 FOG -->
 <div class="fog"></div>
 
 <header>
   <h1>STORY MISTERI CINEMA</h1>
   <p>Cinematic Horror Universe</p>
-
-  <a class="btn" href="episode1.html">Episode 1</a>
-  <a class="btn" href="episode2.html">Episode 2</a>
-  <a class="btn" href="about.html">About</a>
-  <a class="btn" href="privacy.html">Privacy</a>
-  <a class="btn" href="contact.html">Contact</a>
 </header>
 
-<!-- 🎬 HERO -->
 <section class="hero">
   <img src="https://github.com/Roman-Yosi/Poto-mister-cinema/blob/main/Cinemamisteri.png?raw=true">
 </section>
 
-<!-- 🎥 VIDEO AUTO FEED -->
+<!-- 🎬 VIDEO -->
 <section class="video">
   <h2>Latest Video</h2>
 
   <iframe id="videoPlayer" allowfullscreen></iframe>
 </section>
 
+<!-- 📄 TITLE + DESCRIPTION DISPLAY -->
+<section class="info">
+  <h2 id="videoTitle">Loading...</h2>
+  <p id="videoDesc">Memuat deskripsi video...</p>
+</section>
+
 <footer>
   © 2026 Story Misteri Cinema
 </footer>
 
-<!-- 🚀 FIXED YOUTUBE FEED (NO ERROR) -->
+<!-- 🚀 AUTO YOUTUBE FEED + META INFO -->
 <script>
-function loadLatest(channelId){
-  // YouTube Uploads playlist (UU + channel ID)
-  const uploadsPlaylist = "UU" + channelId.substring(2);
+async function loadLatest(channelId){
+  const uploads = "UU" + channelId.substring(2);
 
-  document.getElementById("videoPlayer").src =
-    "https://www.youtube.com/embed/videoseries?list=" + uploadsPlaylist +
-    "&autoplay=1&mute=1";
+  const embedUrl =
+    "https://www.youtube.com/embed/videoseries?list=" + uploads + "&autoplay=1&mute=1";
+
+  document.getElementById("videoPlayer").src = embedUrl;
+
+  // ambil metadata (judul + deskripsi)
+  fetch("https://www.youtube.com/feeds/videos.xml?channel_id=" + channelId)
+  .then(res => res.text())
+  .then(str => {
+    const parser = new DOMParser();
+    const xml = parser.parseFromString(str, "text/xml");
+
+    const title = xml.querySelector("entry > title").textContent;
+    const desc = xml.querySelector("entry > media\\:description")?.textContent || "No description";
+
+    document.getElementById("videoTitle").innerText = title;
+    document.getElementById("videoDesc").innerText = desc;
+  });
 }
 
-// 🎬 default channel Roman Yosi
+// 🎬 default channel
 loadLatest("UCUTSzBr1CERM8lB9OTCwrQg");
 </script>
 
