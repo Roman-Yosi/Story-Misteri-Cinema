@@ -4,7 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Story Misteri Cinema - AI Netflix System</title>
+<title>Story Misteri Cinema - Horror Streaming</title>
+
+<meta name="description" content="Streaming cerita horor cinematic Indonesia">
+<meta name="keywords" content="horor, misteri, roman yosi, story cinema">
 
 <style>
 body{
@@ -34,17 +37,16 @@ to{transform:translateX(-50%);}
 /* HEADER */
 header{
 text-align:center;
-padding:30px;
+padding:20px;
 border-bottom:1px solid #222;
 }
 
 h1{
 color:red;
 text-shadow:0 0 15px red;
-letter-spacing:3px;
 }
 
-/* HERO PLAYER */
+/* PLAYER */
 .player{
 text-align:center;
 padding:20px;
@@ -79,39 +81,27 @@ transform:scale(1.05);
 box-shadow:0 0 20px red;
 }
 
-.card img{
-width:100%;
-}
+.card img{width:100%;}
+.card p{padding:10px;font-size:13px;color:#ccc;}
 
-.card p{
-padding:10px;
-font-size:13px;
-color:#ccc;
-}
-
-/* SECTION */
-.section-title{
-padding:10px 20px;
-color:red;
-font-size:20px;
-}
-
-/* SOCIAL */
-.social{
+/* ADS */
+.ads{
+margin:20px;
+padding:20px;
+border:1px dashed #444;
 text-align:center;
-padding:30px;
+color:#888;
+background:#111;
 }
 
-.btn{
-display:inline-block;
-margin:6px;
-padding:10px 14px;
-background:red;
-color:white;
-text-decoration:none;
-border-radius:8px;
+/* HISTORY */
+.history{
+padding:20px;
+color:#aaa;
+font-size:13px;
 }
 
+/* FOOTER */
 footer{
 text-align:center;
 padding:20px;
@@ -127,49 +117,41 @@ border-top:1px solid #222;
 
 <header>
 <h1>STORY MISTERI CINEMA</h1>
-<p>AI Netflix Horror System</p>
 </header>
 
-<!-- 🎬 MAIN PLAYER -->
+<!-- 🎬 PLAYER -->
 <section class="player">
 <iframe id="videoPlayer"></iframe>
+<h3 id="title">Loading...</h3>
+<p id="desc">Memuat video...</p>
 </section>
 
-<!-- 🔥 AUTO LATEST (AI SYSTEM) -->
-<div class="section-title">🔥 Latest Upload (Auto AI)</div>
-<section class="grid" id="latestGrid"></section>
+<!-- 💰 ADS -->
+<div class="ads">
+📢 Ad Slot (AdSense / Adsterra Ready)
+</div>
 
-<!-- 📺 TRENDING (same system logic) -->
-<div class="section-title">📺 Trending Horror Episodes</div>
-<section class="grid" id="trendingGrid"></section>
+<!-- 🔥 GRID -->
+<div class="grid" id="grid"></div>
 
-<!-- 📱 SOCIAL -->
-<section class="social">
-
-<h2 style="color:red;">FOLLOW</h2>
-
-<a class="btn" href="https://www.tiktok.com/@romanyosi">TikTok Roman Yosi</a>
-<a class="btn" href="https://www.tiktok.com/@kromantv">TikTok KromanTV</a>
-<a class="btn" href="https://www.instagram.com/roman.yosi">Instagram</a>
-<a class="btn" href="https://www.instagram.com/kromantv1">Instagram KromanTV</a>
-
-</section>
+<!-- 📺 HISTORY -->
+<div class="history">
+<h3>Watch History</h3>
+<ul id="history"></ul>
+</div>
 
 <footer>
-© 2026 AI Netflix Horror System
+© 2026 Story Misteri Cinema
 </footer>
 
 <script>
 
-const channels = [
-"UCUTSzBr1CERM8lB9OTCwrQg", // Roman Yosi
-"UCMnig2Zwu_aHwu9LS_2XsgA"  // KromanTV
-];
+const channelId = "UCUTSzBr1CERM8lB9OTCwrQg";
 
-// 🔥 FETCH YOUTUBE FEED (AUTO)
-async function fetchChannel(channelId){
-const url = "https://www.youtube.com/feeds/videos.xml?channel_id=" + channelId;
-
+// 🔥 FIXED FETCH YOUTUBE FEED
+async function loadVideos(){
+try{
+const url = "https://www.youtube.com/feeds/videos.xml?channel_id="+channelId;
 const res = await fetch(url);
 const text = await res.text();
 
@@ -178,59 +160,79 @@ const xml = parser.parseFromString(text,"text/xml");
 
 const entries = xml.querySelectorAll("entry");
 
-let videos = [];
+let vids=[];
 
 entries.forEach(e=>{
-const title = e.querySelector("title").textContent;
-const link = e.querySelector("link").getAttribute("href");
-const id = link.split("v=")[1];
+let title = e.querySelector("title").textContent;
+let link = e.querySelector("link").getAttribute("href");
 
-videos.push({title,id});
+let idMatch = link.match(/v=([^&]+)/);
+let id = idMatch ? idMatch[1] : "";
+
+if(id){
+vids.push({title,id});
+}
 });
 
-return videos;
+// fallback kalau kosong
+if(vids.length === 0){
+document.getElementById("title").innerText = "Video tidak ditemukan";
+return;
 }
 
-// 🎬 LOAD GRID
-async function load(){
-let allVideos = [];
+render(vids);
 
-for(let c of channels){
-const vids = await fetchChannel(c);
-allVideos = allVideos.concat(vids);
+// auto play first video
+play(vids[0].id, vids[0].title);
+
+}catch(err){
+document.getElementById("title").innerText = "Error loading video feed";
+}
 }
 
-// SORT (AI trending = newest first)
-allVideos = allVideos.slice(0,6);
-
-document.getElementById("videoPlayer").src =
-"https://www.youtube.com/embed/" + allVideos[0].id + "?autoplay=1&mute=1";
-
-// LATEST GRID
-document.getElementById("latestGrid").innerHTML =
-allVideos.map(v=>`
-<div class="card" onclick="play('${v.id}')">
+// 🎬 RENDER GRID
+function render(videos){
+document.getElementById("grid").innerHTML =
+videos.slice(0,6).map(v=>`
+<div class="card" onclick="play('${v.id}','${v.title}')">
 <img src="https://img.youtube.com/vi/${v.id}/hqdefault.jpg">
 <p>${v.title}</p>
 </div>
 `).join("");
-
-// TRENDING GRID (duplicate logic simple AI)
-document.getElementById("trendingGrid").innerHTML =
-allVideos.map(v=>`
-<div class="card" onclick="play('${v.id}')">
-<img src="https://img.youtube.com/vi/${v.id}/hqdefault.jpg">
-<p>🔥 ${v.title}</p>
-</div>
-`).join("");
 }
 
-function play(id){
+// 🎥 PLAY VIDEO
+function play(id,title){
+
 document.getElementById("videoPlayer").src =
-"https://www.youtube.com/embed/" + id + "?autoplay=1&mute=1";
+"https://www.youtube.com/embed/"+id+"?autoplay=1&mute=1";
+
+document.getElementById("title").innerText = title;
+
+document.getElementById("desc").innerText =
+"Episode horor cinematic: " + title;
+
+saveHistory(title);
 }
 
-load();
+// 📜 HISTORY
+function saveHistory(title){
+let h = JSON.parse(localStorage.getItem("history")||"[]");
+h.unshift(title);
+localStorage.setItem("history",JSON.stringify(h));
+
+document.getElementById("history").innerHTML =
+h.slice(0,5).map(x=>"<li>"+x+"</li>").join("");
+}
+
+// LOAD HISTORY
+(function(){
+let h = JSON.parse(localStorage.getItem("history")||"[]");
+document.getElementById("history").innerHTML =
+h.slice(0,5).map(x=>"<li>"+x+"</li>").join("");
+})();
+
+loadVideos();
 
 </script>
 
