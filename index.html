@@ -4,10 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Story Misteri Cinema - Horror Streaming</title>
-
-<meta name="description" content="Streaming cerita horor cinematic Indonesia">
-<meta name="keywords" content="horor, misteri, roman yosi, story cinema">
+<title>Story Misteri Cinema - Horror Universe</title>
 
 <style>
 body{
@@ -18,7 +15,7 @@ color:white;
 overflow-x:hidden;
 }
 
-/* 🌫 FOG */
+/* 🌫 FOG EFFECT */
 .fog{
 position:fixed;
 width:200%;
@@ -44,6 +41,7 @@ border-bottom:1px solid #222;
 h1{
 color:red;
 text-shadow:0 0 15px red;
+letter-spacing:3px;
 }
 
 /* PLAYER */
@@ -84,7 +82,7 @@ box-shadow:0 0 20px red;
 .card img{width:100%;}
 .card p{padding:10px;font-size:13px;color:#ccc;}
 
-/* ADS */
+/* ADS SLOT */
 .ads{
 margin:20px;
 padding:20px;
@@ -92,13 +90,6 @@ border:1px dashed #444;
 text-align:center;
 color:#888;
 background:#111;
-}
-
-/* HISTORY */
-.history{
-padding:20px;
-color:#aaa;
-font-size:13px;
 }
 
 /* FOOTER */
@@ -117,122 +108,61 @@ border-top:1px solid #222;
 
 <header>
 <h1>STORY MISTERI CINEMA</h1>
+<p>Horror Cinematic Universe</p>
 </header>
 
-<!-- 🎬 PLAYER -->
+<!-- 🎬 PLAYER (STABLE) -->
 <section class="player">
-<iframe id="videoPlayer"></iframe>
-<h3 id="title">Loading...</h3>
-<p id="desc">Memuat video...</p>
+<iframe id="player"
+src="https://www.youtube.com/embed/lQvS3k7zb14?autoplay=1&mute=1"
+allowfullscreen>
+</iframe>
+
+<h3 id="title">Hampir Saja Kami Tak Sadarkan Diri</h3>
 </section>
 
-<!-- 💰 ADS -->
+<!-- 💀 ADS SLOT -->
 <div class="ads">
-📢 Ad Slot (AdSense / Adsterra Ready)
+📢 Ad Slot (AdSense / Adsterra Ready Position)
 </div>
 
-<!-- 🔥 GRID -->
-<div class="grid" id="grid"></div>
+<!-- 🔥 GRID EPISODE (MANUAL STABLE SYSTEM) -->
+<div class="grid">
 
-<!-- 📺 HISTORY -->
-<div class="history">
-<h3>Watch History</h3>
-<ul id="history"></ul>
+<div class="card" onclick="play('lQvS3k7zb14','Rumah Angker Banten')">
+<img src="https://img.youtube.com/vi/lQvS3k7zb14/hqdefault.jpg">
+<p>Episode 1 - Rumah Angker Banten</p>
+</div>
+
+<div class="card" onclick="play('tA9dH_QSEYk','Rumah Terbengkalai')">
+<img src="https://img.youtube.com/vi/tA9dH_QSEYk/hqdefault.jpg">
+<p>Episode 2 - Rumah Terbengkalai</p>
+</div>
+
+<div class="card" onclick="play('6O9KycBCIF4','Rumah Viral Angker')">
+<img src="https://img.youtube.com/vi/6O9KycBCIF4/hqdefault.jpg">
+<p>Episode 3 - Rumah Viral Angker</p>
+</div>
+
+<div class="card" onclick="play('wDyfxlQ8R-g','Kuntilanak Menangis')">
+<img src="https://img.youtube.com/vi/wDyfxlQ8R-g/hqdefault.jpg">
+<p>Episode 4 - Kuntilanak Menangis</p>
+</div>
+
 </div>
 
 <footer>
-© 2026 Story Misteri Cinema
+© 2026 Story Misteri Cinema - Stable Horror System
 </footer>
 
 <script>
 
-const channelId = "UCUTSzBr1CERM8lB9OTCwrQg";
-
-// 🔥 FIXED FETCH YOUTUBE FEED
-async function loadVideos(){
-try{
-const url = "https://www.youtube.com/feeds/videos.xml?channel_id="+channelId;
-const res = await fetch(url);
-const text = await res.text();
-
-const parser = new DOMParser();
-const xml = parser.parseFromString(text,"text/xml");
-
-const entries = xml.querySelectorAll("entry");
-
-let vids=[];
-
-entries.forEach(e=>{
-let title = e.querySelector("title").textContent;
-let link = e.querySelector("link").getAttribute("href");
-
-let idMatch = link.match(/v=([^&]+)/);
-let id = idMatch ? idMatch[1] : "";
-
-if(id){
-vids.push({title,id});
-}
-});
-
-// fallback kalau kosong
-if(vids.length === 0){
-document.getElementById("title").innerText = "Video tidak ditemukan";
-return;
-}
-
-render(vids);
-
-// auto play first video
-play(vids[0].id, vids[0].title);
-
-}catch(err){
-document.getElementById("title").innerText = "Error loading video feed";
-}
-}
-
-// 🎬 RENDER GRID
-function render(videos){
-document.getElementById("grid").innerHTML =
-videos.slice(0,6).map(v=>`
-<div class="card" onclick="play('${v.id}','${v.title}')">
-<img src="https://img.youtube.com/vi/${v.id}/hqdefault.jpg">
-<p>${v.title}</p>
-</div>
-`).join("");
-}
-
-// 🎥 PLAY VIDEO
 function play(id,title){
-
-document.getElementById("videoPlayer").src =
+document.getElementById("player").src =
 "https://www.youtube.com/embed/"+id+"?autoplay=1&mute=1";
 
 document.getElementById("title").innerText = title;
-
-document.getElementById("desc").innerText =
-"Episode horor cinematic: " + title;
-
-saveHistory(title);
 }
-
-// 📜 HISTORY
-function saveHistory(title){
-let h = JSON.parse(localStorage.getItem("history")||"[]");
-h.unshift(title);
-localStorage.setItem("history",JSON.stringify(h));
-
-document.getElementById("history").innerHTML =
-h.slice(0,5).map(x=>"<li>"+x+"</li>").join("");
-}
-
-// LOAD HISTORY
-(function(){
-let h = JSON.parse(localStorage.getItem("history")||"[]");
-document.getElementById("history").innerHTML =
-h.slice(0,5).map(x=>"<li>"+x+"</li>").join("");
-})();
-
-loadVideos();
 
 </script>
 
