@@ -15,13 +15,13 @@ body {
   overflow-x: hidden;
 }
 
-/* 🌫 HORROR FOG BACKGROUND */
+/* 🌫 FOG */
 .fog {
   position: fixed;
   width: 200%;
   height: 200%;
   background: url('https://i.ibb.co/4m5qgk0/fog.png');
-  opacity: 0.15;
+  opacity: 0.12;
   animation: moveFog 30s linear infinite;
   pointer-events: none;
 }
@@ -44,20 +44,30 @@ h1 {
   font-size: 34px;
 }
 
-/* HERO TRAILER */
+.btn {
+  background: red;
+  padding: 10px 15px;
+  margin: 5px;
+  border-radius: 8px;
+  text-decoration: none;
+  color: white;
+  display: inline-block;
+}
+
+/* TRAILER */
 .trailer {
   position: relative;
   width: 100%;
   height: 60vh;
-  overflow: hidden;
 }
 
 .trailer iframe {
   width: 100%;
   height: 100%;
+  border: none;
 }
 
-/* OVERLAY DARK */
+/* OVERLAY */
 .overlay {
   position: absolute;
   top: 0;
@@ -66,19 +76,10 @@ h1 {
   background: linear-gradient(to top, black, transparent);
 }
 
-/* BUTTON */
-.btn {
-  background: red;
-  padding: 10px 15px;
-  margin: 5px;
-  border-radius: 8px;
-  text-decoration: none;
-  color: white;
-}
-
 /* TRENDING */
 .trending {
   padding: 20px;
+  text-align: center;
 }
 
 .card {
@@ -95,72 +96,70 @@ h1 {
   background: red;
 }
 
-/* ADS BOX */
+/* ADS */
 .ad {
   margin: 20px;
   padding: 20px;
   border: 1px dashed #444;
   background: #111;
+  text-align: center;
 }
 
-/* DESCRIPTION */
+/* DESC */
 .desc {
   max-width: 700px;
   margin: auto;
   padding: 20px;
   color: #bbb;
+  text-align: center;
 }
 </style>
 </head>
 
 <body>
 
-<!-- 🌫 FOG EFFECT -->
+<!-- 🌫 EFFECT -->
 <div class="fog"></div>
 
 <header>
   <h1>STORY MISTERI CINEMA</h1>
-  <p>Cinematic Horror • Mystery • Dark Universe</p>
+  <p>Cinematic Horror • Mystery Universe</p>
 
   <a class="btn" href="https://youtube.com/@romanyosi">Roman Yosi</a>
   <a class="btn" href="https://youtube.com/@kromantv">KromanTV</a>
 </header>
 
-<!-- 🎬 AUTO TRAILER (NETFLIX STYLE) -->
+<!-- 🎬 VIDEO AUTO -->
 <div class="trailer">
-  <iframe
-    src="https://www.youtube.com/embed?listType=user_uploads&list=UCUTSzBr1CERM8lB9OTCwrQg&autoplay=1&mute=1&controls=0"
-    allow="autoplay">
-  </iframe>
-
+  <iframe id="videoPlayer" allow="autoplay" allowfullscreen></iframe>
   <div class="overlay"></div>
 </div>
 
-<!-- 🧠 AI STYLE DESCRIPTION -->
+<!-- 🧠 DESCRIPTION -->
 <div class="desc">
   <h2>Synopsis</h2>
   <p>
-    Di dunia gelap Story Misteri Cinema, setiap cerita membuka rahasia yang tidak seharusnya terlihat.
-    Bayangan bergerak, suara tanpa sumber, dan kisah yang tidak pernah selesai...
+    Di dunia Story Misteri Cinema, setiap video menyimpan rahasia gelap
+    yang tidak semua orang bisa melihat...
   </p>
 </div>
 
-<!-- 🔴 TRENDING SECTION -->
+<!-- 🔴 TRENDING -->
 <div class="trending">
   <h2>🔥 Trending Episodes</h2>
 
-  <div class="card" onclick="load('UCUTSzBr1CERM8lB9OTCwrQg')">
+  <div class="card" onclick="loadChannel('UCUTSzBr1CERM8lB9OTCwrQg')">
     🎬 Roman Yosi
   </div>
 
-  <div class="card" onclick="load('UCMnig2Zwu_aHwu9LS_2XsgA')">
+  <div class="card" onclick="loadChannel('UCMnig2Zwu_aHwu9LS_2XsgA')">
     🎬 KromanTV
   </div>
 </div>
 
-<!-- 💰 ADS READY -->
+<!-- 💰 ADS -->
 <div class="ad">
-  📢 Ad Slot Ready (AdSense / Adsterra Optimized Placement)
+  📢 Ad Slot Ready (AdSense / Adsterra)
 </div>
 
 <footer style="text-align:center; padding:20px; color:#666;">
@@ -168,10 +167,21 @@ h1 {
 </footer>
 
 <script>
-function load(id){
-  document.querySelector(".trailer iframe").src =
-  "https://www.youtube.com/embed?listType=user_uploads&list=" + id + "&autoplay=1&mute=1";
+// 🔥 AUTO LOAD VIDEO TERBARU (FIX UTAMA)
+async function loadChannel(id){
+  const rss = "https://www.youtube.com/feeds/videos.xml?channel_id=" + id;
+
+  const res = await fetch("https://api.rss2json.com/v1/api.json?rss_url=" + encodeURIComponent(rss));
+  const data = await res.json();
+
+  const videoId = data.items[0].link.split("v=")[1];
+
+  document.getElementById("videoPlayer").src =
+    "https://www.youtube.com/embed/" + videoId + "?autoplay=1&mute=1";
 }
+
+// default (Roman Yosi auto tampil di beranda)
+loadChannel("UCUTSzBr1CERM8lB9OTCwrQg");
 </script>
 
 </body>
