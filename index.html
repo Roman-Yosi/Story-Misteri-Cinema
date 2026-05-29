@@ -4,147 +4,119 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Story Misteri Cinema - Netflix Horror</title>
+<title>Story Misteri Cinema - AI Netflix System</title>
 
 <style>
-body {
-  margin:0;
-  font-family: Arial, sans-serif;
-  background:black;
-  color:white;
-  overflow-x:hidden;
+body{
+margin:0;
+font-family:Arial;
+background:black;
+color:white;
+overflow-x:hidden;
 }
 
 /* 🌫 FOG */
-.fog {
-  position:fixed;
-  width:200%;
-  height:200%;
-  background:url('https://i.ibb.co/4m5qgk0/fog.png');
-  opacity:0.12;
-  animation:moveFog 30s linear infinite;
-  pointer-events:none;
+.fog{
+position:fixed;
+width:200%;
+height:200%;
+background:url('https://i.ibb.co/4m5qgk0/fog.png');
+opacity:0.12;
+animation:moveFog 30s linear infinite;
+pointer-events:none;
 }
 
-@keyframes moveFog {
-  from {transform:translateX(0);}
-  to {transform:translateX(-50%);}
-}
-
-/* 🎬 CINEMATIC INTRO */
-.intro {
-  height:100vh;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  background:black;
-  text-align:center;
-}
-
-.intro h1 {
-  font-size:40px;
-  letter-spacing:4px;
-  color:red;
-  text-shadow:0 0 20px red;
-}
-
-.intro p {
-  color:#aaa;
+@keyframes moveFog{
+from{transform:translateX(0);}
+to{transform:translateX(-50%);}
 }
 
 /* HEADER */
-header {
-  text-align:center;
-  padding:20px;
-  border-bottom:1px solid #222;
+header{
+text-align:center;
+padding:30px;
+border-bottom:1px solid #222;
 }
 
-/* SEASON */
-.season {
-  padding:20px;
-  color:red;
-  font-size:20px;
+h1{
+color:red;
+text-shadow:0 0 15px red;
+letter-spacing:3px;
+}
+
+/* HERO PLAYER */
+.player{
+text-align:center;
+padding:20px;
+}
+
+iframe{
+width:90%;
+max-width:900px;
+height:450px;
+border:none;
+border-radius:12px;
 }
 
 /* GRID */
-.grid {
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:10px;
-  padding:20px;
+.grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:10px;
+padding:20px;
 }
 
-.card {
-  background:#111;
-  border-radius:10px;
-  overflow:hidden;
-  cursor:pointer;
-  transition:0.3s;
+.card{
+background:#111;
+border-radius:10px;
+overflow:hidden;
+cursor:pointer;
+transition:0.3s;
 }
 
-.card img {
-  width:100%;
-  display:block;
+.card:hover{
+transform:scale(1.05);
+box-shadow:0 0 20px red;
 }
 
-.card:hover {
-  transform:scale(1.05);
-  box-shadow:0 0 20px red;
+.card img{
+width:100%;
 }
 
-.card p {
-  padding:10px;
-  font-size:14px;
-  color:#ccc;
+.card p{
+padding:10px;
+font-size:13px;
+color:#ccc;
 }
 
-/* PLAYER */
-.player {
-  text-align:center;
-  padding:20px;
-}
-
-iframe {
-  width:90%;
-  max-width:900px;
-  height:450px;
-  border:none;
-  border-radius:12px;
+/* SECTION */
+.section-title{
+padding:10px 20px;
+color:red;
+font-size:20px;
 }
 
 /* SOCIAL */
-.social {
-  text-align:center;
-  padding:30px;
+.social{
+text-align:center;
+padding:30px;
 }
 
-.btn {
-  display:inline-block;
-  margin:6px;
-  padding:10px 14px;
-  background:red;
-  color:white;
-  text-decoration:none;
-  border-radius:8px;
+.btn{
+display:inline-block;
+margin:6px;
+padding:10px 14px;
+background:red;
+color:white;
+text-decoration:none;
+border-radius:8px;
 }
 
-/* TRENDING */
-.trending {
-  padding:20px;
-  color:red;
-}
-
-/* FOOTER */
-footer {
-  text-align:center;
-  padding:20px;
-  color:#666;
-  border-top:1px solid #222;
-}
-
-@media(max-width:768px){
-  .grid{grid-template-columns:repeat(2,1fr);}
+footer{
+text-align:center;
+padding:20px;
+color:#666;
+border-top:1px solid #222;
 }
 </style>
 </head>
@@ -153,89 +125,113 @@ footer {
 
 <div class="fog"></div>
 
-<!-- 🎬 INTRO -->
-<div class="intro">
-  <h1>STORY MISTERI CINEMA</h1>
-  <p>Netflix Horror Universe</p>
-</div>
-
 <header>
-  <h2 style="color:red;">HOME</h2>
+<h1>STORY MISTERI CINEMA</h1>
+<p>AI Netflix Horror System</p>
 </header>
 
-<!-- 🎥 PLAYER -->
+<!-- 🎬 MAIN PLAYER -->
 <section class="player">
-  <iframe id="videoPlayer" allowfullscreen></iframe>
+<iframe id="videoPlayer"></iframe>
 </section>
 
-<!-- 🔥 SEASON 1 -->
-<div class="season">🔥 SEASON 1</div>
+<!-- 🔥 AUTO LATEST (AI SYSTEM) -->
+<div class="section-title">🔥 Latest Upload (Auto AI)</div>
+<section class="grid" id="latestGrid"></section>
 
-<section class="grid">
-
-  <div class="card" onclick="play('lQvS3k7zb14')">
-    <img src="https://img.youtube.com/vi/lQvS3k7zb14/hqdefault.jpg">
-    <p>Hampir Saja Kami Tak Sadarkan Diri</p>
-  </div>
-
-  <div class="card" onclick="play('tA9dH_QSEYk')">
-    <img src="https://img.youtube.com/vi/tA9dH_QSEYk/hqdefault.jpg">
-    <p>Keris Terbang di Rumah Kosong</p>
-  </div>
-
-  <div class="card" onclick="play('6O9KycBCIF4')">
-    <img src="https://img.youtube.com/vi/6O9KycBCIF4/hqdefault.jpg">
-    <p>Rumah Angker Viral</p>
-  </div>
-
-</section>
-
-<!-- 🔥 SEASON 2 -->
-<div class="season">🔥 SEASON 2</div>
-
-<section class="grid">
-
-  <div class="card" onclick="play('wDyfxlQ8R-g')">
-    <img src="https://img.youtube.com/vi/wDyfxlQ8R-g/hqdefault.jpg">
-    <p>Kuntilanak Menangis di Rumah Mewah</p>
-  </div>
-
-  <div class="card">
-    <img src="https://img.youtube.com/vi/lQvS3k7zb14/hqdefault.jpg">
-    <p>Episode Coming Soon</p>
-  </div>
-
-  <div class="card">
-    <img src="https://img.youtube.com/vi/lQvS3k7zb14/hqdefault.jpg">
-    <p>Episode Coming Soon</p>
-  </div>
-
-</section>
+<!-- 📺 TRENDING (same system logic) -->
+<div class="section-title">📺 Trending Horror Episodes</div>
+<section class="grid" id="trendingGrid"></section>
 
 <!-- 📱 SOCIAL -->
 <section class="social">
 
-  <h2 style="color:red;">FOLLOW US</h2>
+<h2 style="color:red;">FOLLOW</h2>
 
-  <a class="btn" href="https://www.tiktok.com/@romanyosi">TikTok Roman Yosi</a>
-  <a class="btn" href="https://www.tiktok.com/@kromantv">TikTok KromanTV</a>
-  <a class="btn" href="https://www.instagram.com/roman.yosi">Instagram Roman Yosi</a>
-  <a class="btn" href="https://www.instagram.com/kromantv1">Instagram KromanTV</a>
+<a class="btn" href="https://www.tiktok.com/@romanyosi">TikTok Roman Yosi</a>
+<a class="btn" href="https://www.tiktok.com/@kromantv">TikTok KromanTV</a>
+<a class="btn" href="https://www.instagram.com/roman.yosi">Instagram</a>
+<a class="btn" href="https://www.instagram.com/kromantv1">Instagram KromanTV</a>
 
 </section>
 
 <footer>
-  © 2026 Story Misteri Cinema - Netflix Horror Style
+© 2026 AI Netflix Horror System
 </footer>
 
 <script>
-function play(id){
-  document.getElementById("videoPlayer").src =
-  "https://www.youtube.com/embed/" + id + "?autoplay=1&mute=1";
+
+const channels = [
+"UCUTSzBr1CERM8lB9OTCwrQg", // Roman Yosi
+"UCMnig2Zwu_aHwu9LS_2XsgA"  // KromanTV
+];
+
+// 🔥 FETCH YOUTUBE FEED (AUTO)
+async function fetchChannel(channelId){
+const url = "https://www.youtube.com/feeds/videos.xml?channel_id=" + channelId;
+
+const res = await fetch(url);
+const text = await res.text();
+
+const parser = new DOMParser();
+const xml = parser.parseFromString(text,"text/xml");
+
+const entries = xml.querySelectorAll("entry");
+
+let videos = [];
+
+entries.forEach(e=>{
+const title = e.querySelector("title").textContent;
+const link = e.querySelector("link").getAttribute("href");
+const id = link.split("v=")[1];
+
+videos.push({title,id});
+});
+
+return videos;
 }
 
-// default video
-play("lQvS3k7zb14");
+// 🎬 LOAD GRID
+async function load(){
+let allVideos = [];
+
+for(let c of channels){
+const vids = await fetchChannel(c);
+allVideos = allVideos.concat(vids);
+}
+
+// SORT (AI trending = newest first)
+allVideos = allVideos.slice(0,6);
+
+document.getElementById("videoPlayer").src =
+"https://www.youtube.com/embed/" + allVideos[0].id + "?autoplay=1&mute=1";
+
+// LATEST GRID
+document.getElementById("latestGrid").innerHTML =
+allVideos.map(v=>`
+<div class="card" onclick="play('${v.id}')">
+<img src="https://img.youtube.com/vi/${v.id}/hqdefault.jpg">
+<p>${v.title}</p>
+</div>
+`).join("");
+
+// TRENDING GRID (duplicate logic simple AI)
+document.getElementById("trendingGrid").innerHTML =
+allVideos.map(v=>`
+<div class="card" onclick="play('${v.id}')">
+<img src="https://img.youtube.com/vi/${v.id}/hqdefault.jpg">
+<p>🔥 ${v.title}</p>
+</div>
+`).join("");
+}
+
+function play(id){
+document.getElementById("videoPlayer").src =
+"https://www.youtube.com/embed/" + id + "?autoplay=1&mute=1";
+}
+
+load();
+
 </script>
 
 </body>
