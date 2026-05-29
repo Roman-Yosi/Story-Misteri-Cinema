@@ -1,47 +1,67 @@
-body {
-  margin: 0;
-  font-family: Arial;
-  background: black;
-  color: white;
-  text-align: center;
+body{
+margin:0;
+font-family:Arial;
+background:black;
+color:white;
 }
 
-header {
-  padding: 40px;
-  background: #111;
+header{
+text-align:center;
+padding:15px;
+border-bottom:1px solid #222;
 }
 
-h1 {
-  letter-spacing: 2px;
+.logo{
+width:100px;
+border-radius:10px;
 }
 
-.btn {
-  display: inline-block;
-  margin: 5px;
-  padding: 10px 15px;
-  background: red;
-  color: white;
-  text-decoration: none;
-  border-radius: 8px;
+nav a{
+color:white;
+margin:8px;
+text-decoration:none;
+font-size:14px;
 }
 
-.hero img {
-  width: 100%;
-  max-width: 900px;
+nav a:hover{
+color:red;
 }
 
-.content {
-  padding: 30px;
+.hero{
+text-align:center;
+padding:15px;
 }
 
-iframe {
-  width: 90%;
-  max-width: 700px;
-  height: 360px;
-  border: none;
+iframe{
+width:90%;
+height:350px;
+border:none;
+border-radius:10px;
 }
 
-footer {
-  padding: 20px;
-  color: #777;
+.grid{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:10px;
+padding:15px;
+}
+
+.card{
+background:#111;
+padding:10px;
+border-radius:10px;
+cursor:pointer;
+}
+
+.card img{
+width:100%;
+border-radius:8px;
+}
+
+.ads{
+margin:15px;
+padding:20px;
+border:1px dashed #444;
+text-align:center;
+color:#888;
 }
