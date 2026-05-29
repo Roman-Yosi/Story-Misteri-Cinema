@@ -15,7 +15,7 @@ body {
   overflow-x: hidden;
 }
 
-/* 🌫 FOG EFFECT */
+/* 🌫 FOG */
 .fog {
   position: fixed;
   width: 200%;
@@ -65,7 +65,7 @@ p {
   transform: scale(1.05);
 }
 
-/* HERO IMAGE */
+/* HERO */
 .hero img {
   width: 100%;
   max-width: 900px;
@@ -120,7 +120,7 @@ footer {
   <img src="https://github.com/Roman-Yosi/Poto-mister-cinema/blob/main/Cinemamisteri.png?raw=true">
 </section>
 
-<!-- 🎥 VIDEO AUTO -->
+<!-- 🎥 VIDEO AUTO FEED -->
 <section class="video">
   <h2>Latest Video</h2>
 
@@ -131,22 +131,19 @@ footer {
   © 2026 Story Misteri Cinema
 </footer>
 
-<!-- 🚀 AUTO YOUTUBE LATEST VIDEO -->
+<!-- 🚀 FIXED YOUTUBE FEED (NO ERROR) -->
 <script>
-async function loadLatestVideo(channelId){
-  const rss = "https://www.youtube.com/feeds/videos.xml?channel_id=" + channelId;
-
-  const res = await fetch("https://api.rss2json.com/v1/api.json?rss_url=" + encodeURIComponent(rss));
-  const data = await res.json();
-
-  const videoId = data.items[0].link.split("v=")[1];
+function loadLatest(channelId){
+  // YouTube Uploads playlist (UU + channel ID)
+  const uploadsPlaylist = "UU" + channelId.substring(2);
 
   document.getElementById("videoPlayer").src =
-    "https://www.youtube.com/embed/" + videoId + "?autoplay=1&mute=1";
+    "https://www.youtube.com/embed/videoseries?list=" + uploadsPlaylist +
+    "&autoplay=1&mute=1";
 }
 
 // 🎬 default channel Roman Yosi
-loadLatestVideo("UCUTSzBr1CERM8lB9OTCwrQg");
+loadLatest("UCUTSzBr1CERM8lB9OTCwrQg");
 </script>
 
 </body>
