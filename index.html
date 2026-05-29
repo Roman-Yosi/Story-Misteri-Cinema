@@ -3,186 +3,36 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Story Misteri Cinema</title>
-
-<style>
-body {
-  margin: 0;
-  font-family: Arial;
-  background: black;
-  color: white;
-  overflow-x: hidden;
-}
-
-/* 🌫 FOG */
-.fog {
-  position: fixed;
-  width: 200%;
-  height: 200%;
-  background: url('https://i.ibb.co/4m5qgk0/fog.png');
-  opacity: 0.12;
-  animation: moveFog 30s linear infinite;
-  pointer-events: none;
-}
-
-@keyframes moveFog {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
-}
-
-/* HEADER */
-header {
-  padding: 40px;
-  text-align: center;
-  background: linear-gradient(#111,#000);
-  border-bottom: 1px solid #222;
-}
-
-h1 {
-  letter-spacing: 3px;
-  font-size: 34px;
-}
-
-.btn {
-  background: red;
-  padding: 10px 15px;
-  margin: 5px;
-  border-radius: 8px;
-  text-decoration: none;
-  color: white;
-  display: inline-block;
-}
-
-/* TRAILER */
-.trailer {
-  position: relative;
-  width: 100%;
-  height: 60vh;
-}
-
-.trailer iframe {
-  width: 100%;
-  height: 100%;
-  border: none;
-}
-
-/* OVERLAY */
-.overlay {
-  position: absolute;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(to top, black, transparent);
-}
-
-/* TRENDING */
-.trending {
-  padding: 20px;
-  text-align: center;
-}
-
-.card {
-  display: inline-block;
-  background: #111;
-  padding: 10px;
-  margin: 10px;
-  border-radius: 10px;
-  width: 200px;
-  cursor: pointer;
-}
-
-.card:hover {
-  background: red;
-}
-
-/* ADS */
-.ad {
-  margin: 20px;
-  padding: 20px;
-  border: 1px dashed #444;
-  background: #111;
-  text-align: center;
-}
-
-/* DESC */
-.desc {
-  max-width: 700px;
-  margin: auto;
-  padding: 20px;
-  color: #bbb;
-  text-align: center;
-}
-</style>
+<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<!-- 🌫 EFFECT -->
-<div class="fog"></div>
-
 <header>
   <h1>STORY MISTERI CINEMA</h1>
-  <p>Cinematic Horror • Mystery Universe</p>
+  <p>Cinematic Horror Universe</p>
 
-  <a class="btn" href="https://youtube.com/@romanyosi">Roman Yosi</a>
-  <a class="btn" href="https://youtube.com/@kromantv">KromanTV</a>
+  <a class="btn" href="episode1.html">Episode 1</a>
+  <a class="btn" href="episode2.html">Episode 2</a>
+  <a class="btn" href="about.html">About</a>
+  <a class="btn" href="privacy.html">Privacy</a>
+  <a class="btn" href="contact.html">Contact</a>
 </header>
 
-<!-- 🎬 VIDEO AUTO -->
-<div class="trailer">
-  <iframe id="videoPlayer" allow="autoplay" allowfullscreen></iframe>
-  <div class="overlay"></div>
-</div>
+<section class="hero">
+  <img src="https://github.com/Roman-Yosi/Poto-mister-cinema/blob/main/Cinemamisteri.png?raw=true">
+</section>
 
-<!-- 🧠 DESCRIPTION -->
-<div class="desc">
-  <h2>Synopsis</h2>
-  <p>
-    Di dunia Story Misteri Cinema, setiap video menyimpan rahasia gelap
-    yang tidak semua orang bisa melihat...
-  </p>
-</div>
+<section class="content">
+  <h2>Latest Video</h2>
 
-<!-- 🔴 TRENDING -->
-<div class="trending">
-  <h2>🔥 Trending Episodes</h2>
+  <iframe src="https://www.youtube.com/embed/UCUTSzBr1CERM8lB9OTCwrQg"></iframe>
+</section>
 
-  <div class="card" onclick="loadChannel('UCUTSzBr1CERM8lB9OTCwrQg')">
-    🎬 Roman Yosi
-  </div>
-
-  <div class="card" onclick="loadChannel('UCMnig2Zwu_aHwu9LS_2XsgA')">
-    🎬 KromanTV
-  </div>
-</div>
-
-<!-- 💰 ADS -->
-<div class="ad">
-  📢 Ad Slot Ready (AdSense / Adsterra)
-</div>
-
-<footer style="text-align:center; padding:20px; color:#666;">
+<footer>
   © 2026 Story Misteri Cinema
 </footer>
-
-<script>
-// 🔥 AUTO LOAD VIDEO TERBARU (FIX UTAMA)
-async function loadChannel(id){
-  const rss = "https://www.youtube.com/feeds/videos.xml?channel_id=" + id;
-
-  const res = await fetch("https://api.rss2json.com/v1/api.json?rss_url=" + encodeURIComponent(rss));
-  const data = await res.json();
-
-  const videoId = data.items[0].link.split("v=")[1];
-
-  document.getElementById("videoPlayer").src =
-    "https://www.youtube.com/embed/" + videoId + "?autoplay=1&mute=1";
-}
-
-// default (Roman Yosi auto tampil di beranda)
-loadChannel("UCUTSzBr1CERM8lB9OTCwrQg");
-</script>
 
 </body>
 </html>
