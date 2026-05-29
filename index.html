@@ -3,11 +3,106 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Story Misteri Cinema</title>
-<link rel="stylesheet" href="style.css">
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: black;
+  color: white;
+  overflow-x: hidden;
+}
+
+/* 🌫 FOG EFFECT */
+.fog {
+  position: fixed;
+  width: 200%;
+  height: 200%;
+  background: url('https://i.ibb.co/4m5qgk0/fog.png');
+  opacity: 0.12;
+  animation: moveFog 30s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes moveFog {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* HEADER */
+header {
+  padding: 40px;
+  text-align: center;
+  background: linear-gradient(#111,#000);
+  border-bottom: 1px solid #222;
+}
+
+h1 {
+  font-size: 36px;
+  letter-spacing: 3px;
+  text-shadow: 0 0 10px red;
+}
+
+p {
+  color: #aaa;
+}
+
+.btn {
+  display: inline-block;
+  margin: 6px;
+  padding: 10px 14px;
+  background: red;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  background: darkred;
+  transform: scale(1.05);
+}
+
+/* HERO IMAGE */
+.hero img {
+  width: 100%;
+  max-width: 900px;
+  border-radius: 15px;
+  box-shadow: 0 0 30px rgba(255,0,0,0.2);
+  margin-top: 20px;
+}
+
+/* VIDEO */
+.video {
+  padding: 30px;
+  text-align: center;
+}
+
+iframe {
+  width: 90%;
+  max-width: 800px;
+  height: 420px;
+  border-radius: 12px;
+  border: none;
+  box-shadow: 0 0 30px rgba(0,0,0,0.8);
+}
+
+/* FOOTER */
+footer {
+  text-align: center;
+  padding: 20px;
+  color: #666;
+  border-top: 1px solid #222;
+}
+</style>
 </head>
 
 <body>
+
+<!-- 🌫 FOG -->
+<div class="fog"></div>
 
 <header>
   <h1>STORY MISTERI CINEMA</h1>
@@ -20,19 +115,39 @@
   <a class="btn" href="contact.html">Contact</a>
 </header>
 
+<!-- 🎬 HERO -->
 <section class="hero">
   <img src="https://github.com/Roman-Yosi/Poto-mister-cinema/blob/main/Cinemamisteri.png?raw=true">
 </section>
 
-<section class="content">
+<!-- 🎥 VIDEO AUTO -->
+<section class="video">
   <h2>Latest Video</h2>
 
-  <iframe src="https://www.youtube.com/embed/UCUTSzBr1CERM8lB9OTCwrQg"></iframe>
+  <iframe id="videoPlayer" allowfullscreen></iframe>
 </section>
 
 <footer>
   © 2026 Story Misteri Cinema
 </footer>
+
+<!-- 🚀 AUTO YOUTUBE LATEST VIDEO -->
+<script>
+async function loadLatestVideo(channelId){
+  const rss = "https://www.youtube.com/feeds/videos.xml?channel_id=" + channelId;
+
+  const res = await fetch("https://api.rss2json.com/v1/api.json?rss_url=" + encodeURIComponent(rss));
+  const data = await res.json();
+
+  const videoId = data.items[0].link.split("v=")[1];
+
+  document.getElementById("videoPlayer").src =
+    "https://www.youtube.com/embed/" + videoId + "?autoplay=1&mute=1";
+}
+
+// 🎬 default channel Roman Yosi
+loadLatestVideo("UCUTSzBr1CERM8lB9OTCwrQg");
+</script>
 
 </body>
 </html>
